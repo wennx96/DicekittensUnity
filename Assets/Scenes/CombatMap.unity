@@ -210,7 +210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -303,162 +303,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &747391289
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 747391293}
-  - component: {fileID: 747391292}
-  - component: {fileID: 747391291}
-  - component: {fileID: 747391290}
-  m_Layer: 0
-  m_Name: Easy Save 3 Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &747391290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747391289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9107aee0ced90422da95f0b31680501f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 0a9aaa6b-0e9a-40a1-9ba3-ccd3bb79abed
-  saveEvent: 1
-  loadEvent: 1
-  settings:
-    _location: 0
-    path: SaveData.es3
-    encryptionType: 0
-    encryptionPassword: password
-    directory: 0
-    format: 0
-    bufferSize: 2048
-    saveChildren: 0
-    typeChecking: 1
-    safeReflection: 1
-    memberReferenceMode: 0
-    referenceMode: 2
-    assemblyNames:
-    - Assembly-CSharp
-    - Assembly-CSharp-firstpass
-    showAdvancedSettings: 0
-  autoSaves: []
---- !u!114 &747391291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747391289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a83408fcc9044c4fbc7e5d09a369ab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openReferences: 0
-  openPrefabs: 0
-  idRef:
-    _Keys: 1b4203638e0268155c52273a0c670176bd926973c59d2a5a68c34faa99652d23a7210b78db791e5872d16da0e034584793a233adaeed503e804b904548bcae48832ce519565dca1de2a837c7f88c4321e0992795d267e86c8db5076f1626ef2e804adcf3e58d610f714ed91d1bbbe5151552a70c643a3443b80947426936066e738e31aaf4acf80a434ac71efc0683112d88e3d8b43c933da7756d08c40c7305bbf0f6bfa2d721134b6ef77a387d2f3396b482ef5f9135672078ff0f22b7323ef6fa0427b42db01d131f43a9ea063337e0d5d511abcd4b55290709a67587956b3bb9843e78087f3d9b6022c0b1748327ab372f4de1219228afaf50bb365793758bd7e5a48b71b0275698764baa8ba36274cfad52481db21a1db6a960b40a9b3caed0fbfae779e509676fe1882c76cd6e22195a408d23617fcffdc188c615cd03157adc07379b140bd72a3a7b3c3b4838ee0c19ca8e7b745a528388b1cc81b66f27c82bdecec3df4e264d2c01e0f36d608bddfaa565337b0a00f414d53d0d7a4dec68f0dca7763a46d71c0afedefe6b493128246458d16b71760e525045a250092184de27537f9c0adf757c18c7f7417a
-    _Values:
-    - {fileID: 963194225}
-    - {fileID: 963194228}
-    - {fileID: 963194227}
-    - {fileID: 963194226}
-    - {fileID: 11500000, guid: 4765d6c44a44f774ab78dca1745a8c5d, type: 3}
-    - {fileID: 705507995}
-    - {fileID: 705507994}
-    - {fileID: 705507993}
-    - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 3}
-    - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 3}
-    - {fileID: 1358557294}
-    - {fileID: 1358557298}
-    - {fileID: 1358557296}
-    - {fileID: 1358557297}
-    - {fileID: 6, guid: 0000000000000000f000000000000000, type: 3}
-    - {fileID: 46, guid: 0000000000000000f000000000000000, type: 3}
-    - {fileID: 11500000, guid: 185c61233983ae54f98ee9edb1d1e6bd, type: 3}
-    - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 3}
-    - {fileID: 4637531826831772822, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826831772818, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826831772816, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531827977861421, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826016218855, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826016218854, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531827977861420, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826016218849, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531826016218848, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531827977861423, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531827977861422, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 11500000, guid: c34b36ec0dcfd7442b33c493bd81afeb, type: 3}
-    - {fileID: 11500000, guid: 70c15520950e2c3469a1f04da420c8f2, type: 3}
-    - {fileID: 11500000, guid: 434d55f0371f8f04bb00792e428bb37e, type: 3}
-    - {fileID: 4637531826016218850, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 4637531827977861416, guid: e96202db748262749a70fb3171092a3c, type: 3}
-    - {fileID: 2100000, guid: 1e9520218de0364488d8e10471eb8751, type: 2}
-    - {fileID: 10209, guid: 0000000000000000e000000000000000, type: 3}
-    - {fileID: 1958958780}
-    - {fileID: 1958958776}
-    - {fileID: 1958958778}
-    - {fileID: 1958958777}
-    - {fileID: 2100000, guid: 2ec0981b0693ee54dbcbc23064b4e38e, type: 2}
-    - {fileID: 2800000, guid: eec76da70aad07947a30dee191c599fa, type: 3}
-    - {fileID: 11500000, guid: 4765d6c44a44f774ab78dca1745a8c5d, type: 3}
-    - {fileID: 963194225}
-    - {fileID: 963194228}
-    - {fileID: 963194227}
-    - {fileID: 963194226}
-    - {fileID: 1754676168}
-    - {fileID: 1754676169}
-    - {fileID: 457144756}
-    - {fileID: 457144753}
-    - {fileID: 457144757}
-    - {fileID: 457144755}
-    - {fileID: 457144754}
-  prefabs: []
---- !u!114 &747391292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747391289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8714d999c5ae749538494c1347e5a3ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: 'The Easy Save 3 Manager is required in any scenes which use Easy Save,
-    and is automatically added to your scene when you enter Play mode.
-
-
-    To stop this from automatically being added to your scene, go to ''Window > Easy
-    Save 3 > Settings'' and deselect the ''Auto Add Manager to Scene'' checkbox.'
---- !u!4 &747391293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747391289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2ec0981b0693ee54dbcbc23064b4e38e, type: 2}
+  - {fileID: 2100000, guid: cd8831d0712dfbe48b8810544ad5e03e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

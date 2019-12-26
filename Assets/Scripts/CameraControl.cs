@@ -15,7 +15,9 @@ public class CameraControl : MonoBehaviour
     private Vector3 LastTouch0Position;
     private Vector3 LastTouch1Position;
 
+    private float LastTouchDistance;
 
+    private float LastTouchAngle;
 
 
     private Ray GetCursorRay() => Cam.ScreenPointToRay(Input.mousePosition);
@@ -39,8 +41,6 @@ public class CameraControl : MonoBehaviour
     string GUIText2 = "";
     string GUIText3 = "";
     string GUIText4 = "";
-
-    private Vector3 GetTouchDifference() => GetTouch(0) - GetTouch(1);
 
     //private Ray GetRay()=>Cam.ScreenPointToRay(IsTouching?GetTouch0():Input.GetAxis())
 
@@ -70,16 +70,39 @@ public class CameraControl : MonoBehaviour
     {
         if (IsTouching() && IsTouchDown(0)) LastTouch0Position = GetTouch(0);
         if (TouchCount() == 2 && IsTouchDown(1)) LastTouch1Position = GetTouch(1);
+        if (IsTouching())
+        {
+            if (IsTouchDown(0))
+            {
+                LastTouch0Position = GetTouch(0);
+            }
+            if (TouchCount() == 2)
+            {
+                if (IsTouchDown(1))
+                {
+                    LastTouch1Position = GetTouch(1);
+                    LastTouchDistance = Vector3.Distance(GetTouch(0), GetTouch(1));
+                    LastTouchAngle = Vector3.Angle(GetTouch(0), GetTouch(1));
+                }
+            }
+        }
         GUIText1 = TouchCount() > 0 ? Input.GetTouch(0).phase.ToString() + " " + GetTouch(0).ToString() : "No Touch 1";
         GUIText2 = TouchCount() > 1 ? Input.GetTouch(0).phase.ToString() + " " + GetTouch(1).ToString() : "No Touch 2";
-        GUIText4 = Input.mousePosition.ToString();
-        if (IsTouching()) GUIText4 = $"{IsTouchDown(0)}-{IsTouchMove(0)}-{IsTouchUp(0)}";
+        GUIText3 = DraggingState.ToString();
+        GUIText4 = TouchCount().ToString();
+        //if (IsTouching()) GUIText4 = $"{IsTouchDown(0)}-{IsTouchMove(0)}-{IsTouchUp(0)}";
+        // Debug.Log("=====");
         if (Drag()) return;
+        //Debug.Log("Tried Drag");
         if (Hold()) return;
+        //Debug.Log("Tried Hold");
         if (Drop()) return;
-        if (Move()) return;
+        //Debug.Log("Tried Drop");
         if (Rotate()) return;
+        //Debug.Log("Tried Rotate");
         if (Zoom()) return;
+        //Debug.Log("Tried Zoom");
+        if (Move()) return;
 
     }
 
@@ -109,14 +132,15 @@ public class CameraControl : MonoBehaviour
         {
             if (!IsTouchDown(0)) return false;
         }
+        else return false;
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(GetCursorRay(), out hitInfo))
+        if (Physics.Raycast(GetCursorRay(), out hitInfo, 1 << 13))
         {
             DraggingObject = hitInfo.collider.gameObject;
             if (DraggingObject.transform.parent != null)
             {
-                Debug.Log("Drag");
+
                 ScreenSpace = Cam.WorldToScreenPoint(DraggingObject.transform.parent.position);
                 DraggingOffset = new Vector3(
                     0, 0, 0);//Obj.transform.parent.position - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,screenSpace.z));
@@ -127,6 +151,7 @@ public class CameraControl : MonoBehaviour
                 return false;
             }
             DraggingState = DraggingObject.GetComponent("Immovable") != null;
+            if (DraggingState) Debug.Log("Drag");
             return DraggingState;
         }
         return true;
@@ -143,6 +168,7 @@ public class CameraControl : MonoBehaviour
         {
             if (!IsTouchMove(0)) return false;
         }
+        else return false;
         Debug.Log("Hold");
         float x, y, z;
         float t;
@@ -175,6 +201,7 @@ public class CameraControl : MonoBehaviour
         {
             if (!IsTouchUp(0)) return false;
         }
+        else return false;
         Debug.Log("Drop");
         float x = DraggingObject.transform.parent.position.x;
         float y = DraggingObject.transform.parent.position.y;
@@ -208,6 +235,7 @@ public class CameraControl : MonoBehaviour
         {
             if (!IsTouchMove(0)) return false;
         }
+        else return false;
         Debug.Log("Move");
         Vector3 oldPosition;
         Vector3 newPosition;
@@ -230,13 +258,10 @@ public class CameraControl : MonoBehaviour
         Vector3 oldPoint;
         Vector3 newPoint;
 
-        RaycastHit oldHitInfo;
-        RaycastHit newHitInfo;
-
-        if (!Physics.Raycast(oldRay, out oldHitInfo, float.MaxValue, 1 << 10)) return true;
+        if (!Physics.Raycast(oldRay, out RaycastHit oldHitInfo, float.MaxValue, 1 << 10)) return true;
         oldPoint = oldRay.GetPoint(oldHitInfo.distance);
 
-        if (!Physics.Raycast(newRay, out newHitInfo, float.MaxValue, 1 << 10)) return true;
+        if (!Physics.Raycast(newRay, out RaycastHit newHitInfo, float.MaxValue, 1 << 10)) return true;
         newPoint = newRay.GetPoint(newHitInfo.distance);
 
         CursorDelta = newPoint - oldPoint;
@@ -254,10 +279,10 @@ public class CameraControl : MonoBehaviour
 
 
     private readonly int RotateSpeed = 4;
-    private float LastTouchAngle;
 
     private bool Rotate()
     {
+        return false;
         if (!IsTouching())
         {
             if (!IsMouseMiddleHold()) return false;
@@ -274,22 +299,121 @@ public class CameraControl : MonoBehaviour
 
 
         }
-
+        else return false;
 
 
         return true;
     }
 
-    private float LastTouchDistance;
 
     private readonly float ZoomSpeed = 2;
 
     private bool Zoom()
     {
         float MouseScroll = Input.GetAxis("Mouse ScrollWheel");
-        if (Math.Abs(MouseScroll) <= 1E-3) return false;
-        transform.parent.Translate(0, 0, MouseScroll * ZoomSpeed);
+        float delta = 0;
+        Vector3 targetPosition;
+        if (TouchCount() != 2)
+        {
+            if (Math.Abs(MouseScroll) <= 1E-3)
+            {
+                return false;
+            }
+            targetPosition = Input.mousePosition;
+            delta = MouseScroll * ZoomSpeed;
+            Ray direction = Cam.ScreenPointToRay(targetPosition);
+            if (!Physics.Raycast(direction, out RaycastHit hitInfo, float.MaxValue, 1 << 10)) return true;
+            Vector3 targetPoint = direction.GetPoint(hitInfo.distance);
+            Vector3 zoomVector = targetPoint - Cam.transform.position;
+            zoomVector.Normalize();
+            transform.parent.Translate(-zoomVector * delta);
+        }
+        else
+        {
+            float distance = Vector3.Distance(GetTouch(0), GetTouch(1));
+            delta = distance - LastTouchDistance;
+            targetPosition = (GetTouch(0) + GetTouch(1)) / 2;
+            LastTouchDistance = distance;
+            Debug.Log("Entering Zoom");
+            //if (delta < 2) return false;
+            Ray ray0 = Cam.ScreenPointToRay(LastTouch0Position);
+            Ray ray1 = Cam.ScreenPointToRay(LastTouch1Position);
+
+            Debug.Log($"Casting Ray to {LastTouch0Position} and {LastTouch1Position}");
+
+            Debug.Log("Start Raycasting");
+            if (!Physics.Raycast(ray0, out RaycastHit hitInfo0, float.MaxValue, 1 << 10)) return true;
+            Debug.Log($"Ray0 {ray0} Hit! Hitpoint: {ray0.GetPoint(hitInfo0.distance)} Distance: {hitInfo0.distance}");
+            if (!Physics.Raycast(ray1, out RaycastHit hitInfo1, float.MaxValue, 1 << 10)) return true;
+            Debug.Log($"Ray1 {ray1} Hit! Hitpoint: {ray1.GetPoint(hitInfo1.distance)} Distance: {hitInfo1.distance}");
+            Vector3 mapPoint0 = ray0.GetPoint(hitInfo0.distance);
+            Vector3 mapPoint1 = ray1.GetPoint(hitInfo1.distance);
+
+            Vector3 screenPoint0 = GetTouch(0);
+            Vector3 screenPoint1 = GetTouch(1);
+
+            screenPoint0.z = Cam.nearClipPlane;
+            screenPoint1.z = Cam.nearClipPlane;
+
+            Vector3 worldPoint0 = Cam.ScreenToWorldPoint(screenPoint0);
+            Vector3 worldPoint1 = Cam.ScreenToWorldPoint(screenPoint1);
+
+            Debug.Log($"Transform screen point 0 {screenPoint0} to {worldPoint0}");
+            Debug.Log($"Transform screen point 1 {screenPoint1} to {worldPoint1}");
+
+            if (ClosestPointsOnTwoLines(out Vector3 closestPointLine1, out Vector3 closestPointLine2, mapPoint0, screenPoint0 - mapPoint0, mapPoint1, screenPoint1 - mapPoint1)) return true;
+            Vector3 newCamPosition = (closestPointLine1 + closestPointLine2) / 2;
+            Vector3 camMovement = newCamPosition - transform.parent.position;
+
+            Debug.Log($"Calculated transform: {transform.parent.position} => {newCamPosition}");
+
+            transform.parent.Translate(camMovement);
+
+        }
+        Debug.Log("Zoom");
+        /*Ray direction = Cam.ScreenPointToRay(targetPosition);
+        if (!Physics.Raycast(direction, out RaycastHit hitInfo, float.MaxValue, 1 << 10)) return true;
+        Vector3 targetPoint = direction.GetPoint(hitInfo.distance);
+        Vector3 zoomVector = targetPoint - Cam.transform.position;
+        zoomVector.Normalize();
+        Debug.Log(zoomVector);
+        transform.parent.Translate(-zoomVector * delta);*/
         return true;
+    }
+
+    public static bool ClosestPointsOnTwoLines(out Vector3 closestPointLine1, out Vector3 closestPointLine2, Vector3 linePoint1, Vector3 lineVec1, Vector3 linePoint2, Vector3 lineVec2)
+    {
+
+        closestPointLine1 = Vector3.zero;
+        closestPointLine2 = Vector3.zero;
+
+        float a = Vector3.Dot(lineVec1, lineVec1);
+        float b = Vector3.Dot(lineVec1, lineVec2);
+        float e = Vector3.Dot(lineVec2, lineVec2);
+
+        float d = a * e - b * b;
+
+        //lines are not parallel
+        if (d != 0.0f)
+        {
+
+            Vector3 r = linePoint1 - linePoint2;
+            float c = Vector3.Dot(lineVec1, r);
+            float f = Vector3.Dot(lineVec2, r);
+
+            float s = (b * f - c * e) / d;
+            float t = (a * f - c * b) / d;
+
+            closestPointLine1 = linePoint1 + lineVec1 * s;
+            closestPointLine2 = linePoint2 + lineVec2 * t;
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
 }
