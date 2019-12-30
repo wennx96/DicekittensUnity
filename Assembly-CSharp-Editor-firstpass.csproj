@@ -307,6 +307,9 @@
  <Reference Include="sfw.net">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
  </Reference>
+ <Reference Include="ConsolePro.Editor">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ConsolePro/Editor/ConsolePro.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
