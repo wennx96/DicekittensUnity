@@ -16,8 +16,8 @@ public class CameraControl : MonoBehaviour
     private Vector3 LastTouch1Position;
 
     private float LastTouchDistance;
-
     private float LastTouchAngle;
+    private Vector3 LastTouchMidpoint;
 
 
     private Ray GetCursorRay() => Cam.ScreenPointToRay(Input.mousePosition);
@@ -82,6 +82,7 @@ public class CameraControl : MonoBehaviour
                 {
                     LastTouch1Position = GetTouch(1);
                     LastTouchDistance = Vector3.Distance(GetTouch(0), GetTouch(1));
+                    LastTouchMidpoint = (GetTouch(0) + GetTouch(1)) / 2;
                     LastTouchAngle = Vector3.Angle(GetTouch(0), GetTouch(1));
                 }
             }
@@ -98,11 +99,11 @@ public class CameraControl : MonoBehaviour
         //Debug.Log("Tried Hold");
         if (Drop()) return;
         //Debug.Log("Tried Drop");
-        if (Rotate()) return;
+        if (Rotate()) ;
         //Debug.Log("Tried Rotate");
-        if (Zoom()) return;
+        if (Zoom()) ;
         //Debug.Log("Tried Zoom");
-        if (Move()) return;
+        if (Move()) ;
 
     }
 
@@ -110,7 +111,13 @@ public class CameraControl : MonoBehaviour
     {
         LastMousePosition = Input.mousePosition;
         if (IsTouching()) LastTouch0Position = GetTouch(0);
-        if (TouchCount() == 2) LastTouch1Position = GetTouch(1);
+        if (TouchCount() == 2)
+        {
+            LastTouch1Position = GetTouch(1);
+            LastTouchDistance = Vector3.Distance(GetTouch(0), GetTouch(1));
+            LastTouchAngle = Vector3.Angle(GetTouch(0), GetTouch(1));
+            LastTouchMidpoint = (GetTouch(0) + GetTouch(1)) / 2;
+        }
     }
 
     //Drag and Drop Objects
@@ -265,7 +272,12 @@ public class CameraControl : MonoBehaviour
         newPoint = newRay.GetPoint(newHitInfo.distance);
 
         CursorDelta = newPoint - oldPoint;
-        transform.parent.Translate(-CursorDelta.x, -CursorDelta.y, -CursorDelta.z);
+        Debug.Log("Pre:" + CursorDelta.ToString("F8"));
+        Debug.Log("Rotation:" + transform.parent.transform.rotation.ToString("F8"));
+        CursorDelta = transform.parent.transform.rotation * CursorDelta;
+
+        Debug.Log("Post:" + CursorDelta.ToString("F8"));
+        transform.parent.Translate(-CursorDelta);
 
         //if (IsTouching() && CursorDelta.magnitude > 50) return true;
 
@@ -282,7 +294,6 @@ public class CameraControl : MonoBehaviour
 
     private bool Rotate()
     {
-        return false;
         if (!IsTouching())
         {
             if (!IsMouseMiddleHold()) return false;
@@ -293,8 +304,23 @@ public class CameraControl : MonoBehaviour
         }
         else if (TouchCount() == 2)
         {
-            Debug.Log("Rotate");
             float angle = Vector3.Angle(GetTouch(0), GetTouch(1));
+            float deltaAngle = angle - LastTouchAngle;
+            Debug.Log("Angle:" + deltaAngle);
+            if (Mathf.Abs(deltaAngle) < 0.1)
+            {
+                Debug.Log("Vertical Rotate");
+                Vector3 midpoint = (GetTouch(0) + GetTouch(1)) / 2;
+                float delta = midpoint.y - LastTouchMidpoint.y;
+                Cam.transform.Rotate(delta / 50, 0f, 0f);
+            }
+            else
+            {
+                Debug.Log($"Rotating from {Cam.transform.parent.rotation} by {deltaAngle}");
+                Cam.transform.parent.Rotate(0f, deltaAngle, 0f);
+
+            }
+            //Debug.Log("Rotate" + Vector3.Distance(GetTouch(0), GetTouch(1)));
             Ray midray = GetMiddleRay();
 
 
@@ -307,6 +333,8 @@ public class CameraControl : MonoBehaviour
 
 
     private readonly float ZoomSpeed = 2;
+
+    private Vector3 ZoomCenter;
 
     private bool Zoom()
     {
@@ -330,13 +358,44 @@ public class CameraControl : MonoBehaviour
         }
         else
         {
+
+            if (IsTouchDown(0) || IsTouchDown(1))
+            {
+                ZoomCenter = (GetTouch(0) + GetTouch(1)) / 2;
+                Ray ray = Cam.ScreenPointToRay(ZoomCenter);
+                if (!Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, 1 << 10)) return true;
+                ZoomCenter = ray.GetPoint(hit.distance);
+                Debug.Log($"Zoom on {ZoomCenter}");
+            }
+
             float distance = Vector3.Distance(GetTouch(0), GetTouch(1));
+            float touchChangeMultiplier = distance / LastTouchDistance;
+
+
+            //Vector3 focalPoint = ray.GetPoint(hit.distance);
+            Vector3 focalPoint = ZoomCenter;
+            //Vector3 focalPoint = Vector3.zero;
+            //Vector3 focalPoint = Cam.transform.parent.position + Cam.transform.forward;
+            Vector3 direction = Cam.transform.parent.position - ZoomCenter;
+            float newDistance = direction.magnitude / touchChangeMultiplier;
+            Cam.transform.parent.position = newDistance * direction.normalized + ZoomCenter;
+
+            //Fixed rate zooming
+            /*float distance = Vector3.Distance(GetTouch(0), GetTouch(1));
             delta = distance - LastTouchDistance;
             targetPosition = (GetTouch(0) + GetTouch(1)) / 2;
             LastTouchDistance = distance;
             Debug.Log("Entering Zoom");
-            //if (delta < 2) return false;
-            Ray ray0 = Cam.ScreenPointToRay(LastTouch0Position);
+            if (Math.Abs(delta) < 2) return false;
+
+            Vector3 zoomVector = Cam.ScreenPointToRay(targetPosition).direction;
+
+            Debug.Log(zoomVector);
+            transform.parent.Translate(zoomVector * delta / 20 * ZoomSpeed);*/
+
+
+            //Raybased testing scripts
+            /*Ray ray0 = Cam.ScreenPointToRay(LastTouch0Position);
             Ray ray1 = Cam.ScreenPointToRay(LastTouch1Position);
 
             Debug.Log($"Casting Ray to {LastTouch0Position} and {LastTouch1Position}");
@@ -367,10 +426,9 @@ public class CameraControl : MonoBehaviour
 
             Debug.Log($"Calculated transform: {transform.parent.position} => {newCamPosition}");
 
-            transform.parent.Translate(camMovement);
+            transform.parent.Translate(camMovement);*/
 
         }
-        Debug.Log("Zoom");
         /*Ray direction = Cam.ScreenPointToRay(targetPosition);
         if (!Physics.Raycast(direction, out RaycastHit hitInfo, float.MaxValue, 1 << 10)) return true;
         Vector3 targetPoint = direction.GetPoint(hitInfo.distance);
