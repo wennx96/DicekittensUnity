@@ -157,17 +157,17 @@ public class CameraControl : MonoBehaviour
         if (Physics.Raycast(GetCursorRay(), out hitInfo, float.MaxValue, 1 << 13))
         {
             DraggingObject = hitInfo.collider.gameObject;
-            if (DraggingObject.transform.parent != null)
+            if (DraggingObject != null)
             {
-                ScreenSpace = Cam.WorldToScreenPoint(DraggingObject.transform.parent.position);
-                DraggingOffset = /*Vector3.zero;*/DraggingObject.transform.parent.position - Cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z));
-                PreDraggingObjectPosition = DraggingObject.transform.parent.position;
+                ScreenSpace = Cam.WorldToScreenPoint(DraggingObject.transform.position);
+                DraggingOffset = /*Vector3.zero;*/DraggingObject.transform.position - Cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z));
+                PreDraggingObjectPosition = DraggingObject.transform.position;
             }
             else
             {
                 return false;
             }
-            DraggingState = DraggingObject.transform.parent.gameObject.GetComponent("Immovable") == null;
+            DraggingState = DraggingObject.transform.gameObject.GetComponent("Immovable") == null;
             if (DraggingState) Debug.Log("Drag");
             return DraggingState;
         }
@@ -190,7 +190,7 @@ public class CameraControl : MonoBehaviour
         float x, y, z;
         float t;
 
-        y = DraggingObject.transform.parent.position.y;
+        y = DraggingObject.transform.position.y;
 
         Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z);
         Vector3 currentPosition = Cam.ScreenToWorldPoint(currentScreenSpace) + DraggingOffset;
@@ -200,7 +200,7 @@ public class CameraControl : MonoBehaviour
         x = Cam.transform.position.x - t * (Cam.transform.position.x - currentPosition.x);
         z = Cam.transform.position.z - t * (Cam.transform.position.z - currentPosition.z);
         currentPosition = new Vector3(x, y, z);
-        DraggingObject.transform.parent.position = currentPosition;
+        DraggingObject.transform.position = currentPosition;
 
         //Create a tracing base on grid;
 
@@ -220,15 +220,15 @@ public class CameraControl : MonoBehaviour
         }
         else return false;
         Debug.Log("Drop");
-        float x = DraggingObject.transform.parent.position.x;
-        float y = DraggingObject.transform.parent.position.y;
-        float z = DraggingObject.transform.parent.position.z;
+        float x = DraggingObject.transform.position.x;
+        float y = DraggingObject.transform.position.y;
+        float z = DraggingObject.transform.position.z;
 
-        DroppingOffset = DraggingObject.transform.parent.position - PreDraggingObjectPosition;
+        DroppingOffset = DraggingObject.transform.position - PreDraggingObjectPosition;
 
         //Snap to grid
 
-        DraggingObject.transform.parent.transform.position = new Vector3(x, 0.3f, z);//SquarePosition;
+        DraggingObject.transform.transform.position = new Vector3(x, 0f, z);//SquarePosition;
 
         //Destroy the tracing base
 
@@ -293,7 +293,7 @@ public class CameraControl : MonoBehaviour
         //if (IsTouching() && CursorDelta.magnitude > 50) return true;
 
         //transform.Translate(-CursorDelta * MoveSpeed * Time.deltaTime);
-        MoveFingerID = Input.GetTouch(0).fingerId;
+        if (IsTouching()) MoveFingerID = Input.GetTouch(0).fingerId;
 
         return true;
     }
