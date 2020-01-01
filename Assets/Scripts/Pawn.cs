@@ -19,18 +19,24 @@ public class Pawn : MonoBehaviour
         {
             if (_lifted == value) return;
             _lifted = value;
-            if (_lifted)
-            {
-                Base.transform.position = new Vector3(Base.transform.position.x, Base.transform.position.y + 1, Base.transform.position.z);
-                Cardboard.transform.position = new Vector3(Cardboard.transform.position.x, Cardboard.transform.position.y + 1, Cardboard.transform.position.z);
-                PositionIndicator.SetActive(true);
-            }
-            else
-            {
-                Base.transform.position = new Vector3(Base.transform.position.x, Base.transform.position.y - 1, Base.transform.position.z);
-                Cardboard.transform.position = new Vector3(Cardboard.transform.position.x, Cardboard.transform.position.y - 1, Cardboard.transform.position.z);
-                PositionIndicator.SetActive(false);
-            }
+            Base.transform.position += _lifted ? Vector3.up : -Vector3.up;
+            Cardboard.transform.position += _lifted ? Vector3.up : -Vector3.up;
+            PositionIndicator.SetActive(_lifted);
+        }
+    }
+
+    public float _scale = 1;
+    public float Scale
+    {
+        get
+        {
+            return _scale;
+        }
+        set
+        {
+            if (_scale == value) return;
+            _scale = value;
+            transform.localScale = Vector3.one * _scale;
         }
     }
 
