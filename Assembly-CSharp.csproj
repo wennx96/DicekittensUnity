@@ -146,6 +146,7 @@
      <None Include="Assets\Fingers\Demo\ExampleProjects\Resources\FingersExampleTransitionShader.shader" />
      <None Include="Assets\Fingers\ChangeLog.txt" />
      <None Include="Assets\Fingers\Demo\ExampleProjects\ExampleProjectsReadme.txt" />
+     <None Include="Assets\The_Texture_Lab\TL_Prototype_Textures_Pack\Documentation.txt" />
      <None Include="Assets\Fingers\Readme.txt" />
      <None Include="Assets\Fingers\Prefab\Script\Other\XamarinAndroidTouchAdapter.txt" />
  <Reference Include="Unity.Timeline.Editor">
