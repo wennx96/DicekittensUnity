@@ -162,6 +162,7 @@ public class CameraControl : MonoBehaviour
                 ScreenSpace = Cam.WorldToScreenPoint(DraggingObject.transform.position);
                 DraggingOffset = /*Vector3.zero;*/DraggingObject.transform.position - Cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z));
                 PreDraggingObjectPosition = DraggingObject.transform.position;
+                DraggingObject.GetComponent<Pawn>().Lifted = true;
             }
             else
             {
@@ -229,6 +230,7 @@ public class CameraControl : MonoBehaviour
         //Snap to grid
 
         DraggingObject.transform.transform.position = new Vector3(x, 0f, z);//SquarePosition;
+        DraggingObject.GetComponent<Pawn>().Lifted = false;
 
         //Destroy the tracing base
 
