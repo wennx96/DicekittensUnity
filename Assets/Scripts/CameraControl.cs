@@ -22,7 +22,10 @@ public class CameraControl : MonoBehaviour
 
     private Ray GetCursorRay() => Cam.ScreenPointToRay(Input.mousePosition);
     private Ray GetMiddleRay() => Cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
+    private bool IsMouseLeftDown() => Input.GetMouseButtonDown(0) && !IsTouching();
     private bool IsMouseLeftHold() => Input.GetMouseButton(0) && !IsTouching();
+    private bool IsMouseLeftUp() => Input.GetMouseButtonUp(0) && !IsTouching();
     private bool IsMouseMiddleHold() => Input.GetMouseButton(2) && !IsTouching();
 
     private bool IsTouching() => TouchCount() > 0;
@@ -87,6 +90,14 @@ public class CameraControl : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (LastMousePosition.x < 0 || LastMousePosition.x > Screen.width || LastMousePosition.y < 0 || LastMousePosition.y > Screen.height)
+                    LastMousePosition = Input.mousePosition;
+            }
+        }
         GUIText1 = TouchCount() > 0 ? Input.GetTouch(0).phase.ToString() + " " + GetTouch(0).ToString() : "No Touch 1";
         GUIText2 = TouchCount() > 1 ? Input.GetTouch(0).phase.ToString() + " " + GetTouch(1).ToString() : "No Touch 2";
         GUIText3 = DraggingState.ToString();
@@ -131,9 +142,10 @@ public class CameraControl : MonoBehaviour
 
     private bool Drag()
     {
+        if (DraggingState) return false;
         if (!IsTouching())
         {
-            if (!Input.GetKeyDown(0)) return false;
+            if (!IsMouseLeftDown()) return false;
         }
         else if (TouchCount() == 1)
         {
@@ -142,22 +154,20 @@ public class CameraControl : MonoBehaviour
         else return false;
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(GetCursorRay(), out hitInfo, 1 << 13))
+        if (Physics.Raycast(GetCursorRay(), out hitInfo, float.MaxValue, 1 << 13))
         {
             DraggingObject = hitInfo.collider.gameObject;
             if (DraggingObject.transform.parent != null)
             {
-
                 ScreenSpace = Cam.WorldToScreenPoint(DraggingObject.transform.parent.position);
-                DraggingOffset = new Vector3(
-                    0, 0, 0);//Obj.transform.parent.position - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,screenSpace.z));
+                DraggingOffset = /*Vector3.zero;*/DraggingObject.transform.parent.position - Cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenSpace.z));
                 PreDraggingObjectPosition = DraggingObject.transform.parent.position;
             }
             else
             {
                 return false;
             }
-            DraggingState = DraggingObject.GetComponent("Immovable") != null;
+            DraggingState = DraggingObject.transform.parent.gameObject.GetComponent("Immovable") == null;
             if (DraggingState) Debug.Log("Drag");
             return DraggingState;
         }
@@ -167,9 +177,9 @@ public class CameraControl : MonoBehaviour
     private bool Hold()
     {
         if (!DraggingState) return false;
-        if (!IsMouseLeftHold())
+        if (!IsTouching())
         {
-            return false;
+            if (!IsMouseLeftHold()) return false;
         }
         else if (TouchCount() == 1)
         {
@@ -202,7 +212,7 @@ public class CameraControl : MonoBehaviour
         if (!DraggingState) return false;
         if (!IsTouching())
         {
-            if (!Input.GetMouseButtonUp(0)) return false;
+            if (!IsMouseLeftUp()) return false;
         }
         else if (TouchCount() == 1)
         {
@@ -231,6 +241,8 @@ public class CameraControl : MonoBehaviour
     private readonly float MoveSpeed = 0.5f;
     Vector3 CursorDelta;
 
+    int MoveFingerID;
+
     private bool Move()
     {
         if (DraggingState) return false;
@@ -241,9 +253,13 @@ public class CameraControl : MonoBehaviour
         else if (TouchCount() == 1)
         {
             if (!IsTouchMove(0)) return false;
+            if (Input.GetTouch(0).fingerId != MoveFingerID)
+            {
+                MoveFingerID = Input.GetTouch(0).fingerId;
+                return false;
+            }
         }
         else return false;
-        Debug.Log("Move");
         Vector3 oldPosition;
         Vector3 newPosition;
         if (IsMouseLeftHold())
@@ -272,16 +288,12 @@ public class CameraControl : MonoBehaviour
         newPoint = newRay.GetPoint(newHitInfo.distance);
 
         CursorDelta = newPoint - oldPoint;
-        Debug.Log("Pre:" + CursorDelta.ToString("F8"));
-        Debug.Log("Rotation:" + transform.parent.transform.rotation.ToString("F8"));
-        CursorDelta = transform.parent.transform.rotation * CursorDelta;
-
-        Debug.Log("Post:" + CursorDelta.ToString("F8"));
-        transform.parent.Translate(-CursorDelta);
+        transform.parent.position -= CursorDelta;
 
         //if (IsTouching() && CursorDelta.magnitude > 50) return true;
 
         //transform.Translate(-CursorDelta * MoveSpeed * Time.deltaTime);
+        MoveFingerID = Input.GetTouch(0).fingerId;
 
         return true;
     }
@@ -297,7 +309,7 @@ public class CameraControl : MonoBehaviour
         if (!IsTouching())
         {
             if (!IsMouseMiddleHold()) return false;
-            Debug.Log("Rotate");
+            CursorDelta = Input.mousePosition - LastMousePosition;
             CurrentRotation.x += CursorDelta.y * RotateSpeed * Time.deltaTime;
             CurrentRotation.y -= CursorDelta.x * RotateSpeed * Time.deltaTime;
             transform.eulerAngles = CurrentRotation;
@@ -306,21 +318,17 @@ public class CameraControl : MonoBehaviour
         {
             float angle = Vector3.Angle(GetTouch(0), GetTouch(1));
             float deltaAngle = angle - LastTouchAngle;
-            Debug.Log("Angle:" + deltaAngle);
-            if (Mathf.Abs(deltaAngle) < 0.1)
+            deltaAngle = Vector3.SignedAngle(LastTouch1Position - LastTouch0Position, GetTouch(1) - GetTouch(0), Vector3.forward);
+            if (Mathf.Abs(deltaAngle) < 0.5)
             {
-                Debug.Log("Vertical Rotate");
                 Vector3 midpoint = (GetTouch(0) + GetTouch(1)) / 2;
                 float delta = midpoint.y - LastTouchMidpoint.y;
                 Cam.transform.Rotate(delta / 50, 0f, 0f);
             }
             else
             {
-                Debug.Log($"Rotating from {Cam.transform.parent.rotation} by {deltaAngle}");
                 Cam.transform.parent.Rotate(0f, deltaAngle, 0f);
-
             }
-            //Debug.Log("Rotate" + Vector3.Distance(GetTouch(0), GetTouch(1)));
             Ray midray = GetMiddleRay();
 
 
@@ -379,6 +387,7 @@ public class CameraControl : MonoBehaviour
             Vector3 direction = Cam.transform.parent.position - ZoomCenter;
             float newDistance = direction.magnitude / touchChangeMultiplier;
             Cam.transform.parent.position = newDistance * direction.normalized + ZoomCenter;
+            Debug.DrawRay(Cam.transform.parent.position, ZoomCenter);
 
             //Fixed rate zooming
             /*float distance = Vector3.Distance(GetTouch(0), GetTouch(1));
@@ -439,39 +448,5 @@ public class CameraControl : MonoBehaviour
         return true;
     }
 
-    public static bool ClosestPointsOnTwoLines(out Vector3 closestPointLine1, out Vector3 closestPointLine2, Vector3 linePoint1, Vector3 lineVec1, Vector3 linePoint2, Vector3 lineVec2)
-    {
-
-        closestPointLine1 = Vector3.zero;
-        closestPointLine2 = Vector3.zero;
-
-        float a = Vector3.Dot(lineVec1, lineVec1);
-        float b = Vector3.Dot(lineVec1, lineVec2);
-        float e = Vector3.Dot(lineVec2, lineVec2);
-
-        float d = a * e - b * b;
-
-        //lines are not parallel
-        if (d != 0.0f)
-        {
-
-            Vector3 r = linePoint1 - linePoint2;
-            float c = Vector3.Dot(lineVec1, r);
-            float f = Vector3.Dot(lineVec2, r);
-
-            float s = (b * f - c * e) / d;
-            float t = (a * f - c * b) / d;
-
-            closestPointLine1 = linePoint1 + lineVec1 * s;
-            closestPointLine2 = linePoint2 + lineVec2 * t;
-
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
-    }
 
 }
