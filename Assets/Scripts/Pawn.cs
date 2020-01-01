@@ -7,6 +7,7 @@ public class Pawn : MonoBehaviour
     private GameObject Cardboard;
     private GameObject Base;
     private GameObject PositionIndicator;
+    private GameObject Label;
 
     private bool _lifted = false;
     public bool Lifted
@@ -46,11 +47,14 @@ public class Pawn : MonoBehaviour
         Cardboard = transform.Find("Cardboard").gameObject;
         Base = transform.Find("Base").gameObject;
         PositionIndicator = transform.Find("PositionIndicator").gameObject;
+        Label = transform.Find("Label").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cardboard.transform.LookAt(Camera.main.transform);
+        Cardboard.transform.rotation = Quaternion.Euler(0, Cardboard.transform.rotation.eulerAngles.y, Cardboard.transform.rotation.eulerAngles.z);
 
     }
 }

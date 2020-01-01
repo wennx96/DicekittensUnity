@@ -140,6 +140,7 @@
      <Compile Include="Assets\Fingers\Prefab\Script\Gestures\SwipeGestureRecognizer.cs" />
      <Compile Include="Assets\Fingers\Prefab\Script\Gestures\TapGestureRecognizer.cs" />
      <Compile Include="Assets\Fingers\Prefab\Script\Other\FingersUtilityMethodsScript.cs" />
+     <Compile Include="Assets\Prototype Materials\ShowcaseMovement.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBaseProperties.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBoxMesh.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcCircleMesh.cs" />
@@ -158,11 +159,30 @@
      <Compile Include="Assets\Scripts\Flags\Immovable.cs" />
      <Compile Include="Assets\Scripts\Pawn.cs" />
      <None Include="Assets\Fingers\Demo\ExampleProjects\Resources\FingersExampleTransitionShader.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\Fingers\ChangeLog.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\Materials\Glass.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\Fingers\Demo\ExampleProjects\ExampleProjectsReadme.txt" />
      <None Include="Assets\The_Texture_Lab\TL_Prototype_Textures_Pack\Documentation.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Fingers\Readme.txt" />
      <None Include="Assets\Fingers\Prefab\Script\Other\XamarinAndroidTouchAdapter.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
