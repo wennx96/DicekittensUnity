@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Pawn : MonoBehaviour
 {
     private GameObject Cardboard;
     private GameObject Base;
     private GameObject PositionIndicator;
-    public string Label;
+
+    public string Label = "";
     public bool ProjectLabel = true;
+    private GameObject LabelContainer;
+    private GameObject LabelAnchor;
+    private TextMeshProUGUI LabelMesh;
 
     private bool _lifted = false;
     public bool Lifted
@@ -48,6 +53,17 @@ public class Pawn : MonoBehaviour
         Cardboard = transform.Find("Cardboard").gameObject;
         Base = transform.Find("Base").gameObject;
         PositionIndicator = transform.Find("PositionIndicator").gameObject;
+
+        LabelContainer = new GameObject("PawnLabel");
+        LabelContainer.transform.SetParent(GameObject.Find("PawnCanvas").transform);
+        LabelAnchor = Cardboard.transform.Find("LabelAnchor").gameObject;
+        LabelMesh = LabelContainer.AddComponent<TextMeshProUGUI>();
+
+        LabelMesh.font = Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
+        LabelMesh.fontSharedMaterial = Resources.Load<Material>("Fonts & Materials/LiberationSans SDF - Drop Shadow");
+        LabelMesh.fontStyle = FontStyles.Bold;
+        LabelMesh.fontSize = 30;
+        LabelMesh.SetText(Label);
     }
 
     // Update is called once per frame
@@ -59,7 +75,11 @@ public class Pawn : MonoBehaviour
 
     void OnGUI()
     {
-
+        if (ProjectLabel && Label != "")
+        {
+            LabelMesh.alignment = TextAlignmentOptions.Center;
+            LabelMesh.transform.position = Camera.main.WorldToScreenPoint(LabelAnchor.transform.position);
+        }
     }
 
 

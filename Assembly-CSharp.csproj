@@ -156,6 +156,7 @@
      <Compile Include="Assets\QcPrimitives\Scripts\QcTorusMesh.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\CombatMap.cs" />
+     <Compile Include="Assets\Scripts\CrossScenesObject.cs" />
      <Compile Include="Assets\Scripts\Flags\Immovable.cs" />
      <Compile Include="Assets\Scripts\Pawn.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
