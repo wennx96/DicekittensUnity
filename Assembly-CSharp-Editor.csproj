@@ -45,6 +45,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
+     <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
      <Compile Include="Assets\Fingers\Prefab\Editor\MinMaxSlider.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcBoxMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcCircleMeshEditor.cs" />
@@ -58,6 +60,7 @@
      <Compile Include="Assets\QcPrimitives\Editor\QcSphereMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcStairMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcTorusMeshEditor.cs" />
+     <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
@@ -303,6 +306,24 @@
  </Reference>
  <Reference Include="ConsolePro.Editor">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/ConsolePro/Editor/ConsolePro.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="DemiLib">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+ </Reference>
+ <Reference Include="DemiEditor">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenEditor">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenPro">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenProEditor">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
  </Reference>
  <Reference Include="GitHub.Api.45">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
