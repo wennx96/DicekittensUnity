@@ -59,6 +59,7 @@ public class Pawn : MonoBehaviour
         LabelAnchor = Cardboard.transform.Find("LabelAnchor").gameObject;
         LabelMesh = LabelContainer.AddComponent<TextMeshProUGUI>();
 
+        LabelMesh.alignment = TextAlignmentOptions.Center;
         LabelMesh.font = Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
         LabelMesh.fontSharedMaterial = Resources.Load<Material>("Fonts & Materials/LiberationSans SDF - Drop Shadow");
         LabelMesh.fontStyle = FontStyles.Bold;
@@ -77,7 +78,7 @@ public class Pawn : MonoBehaviour
     {
         if (ProjectLabel && Label != "")
         {
-            LabelMesh.alignment = TextAlignmentOptions.Center;
+
             LabelMesh.transform.position = Camera.main.WorldToScreenPoint(LabelAnchor.transform.position);
         }
     }

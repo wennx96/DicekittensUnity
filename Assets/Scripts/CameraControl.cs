@@ -169,7 +169,6 @@ public class CameraControl : MonoBehaviour
                 return false;
             }
             DraggingState = DraggingObject.transform.gameObject.GetComponent("Immovable") == null;
-            if (DraggingState) Debug.Log("Drag");
             return DraggingState;
         }
         return true;
@@ -187,7 +186,6 @@ public class CameraControl : MonoBehaviour
             if (!IsTouchMove(0)) return false;
         }
         else return false;
-        Debug.Log("Hold");
         float x, y, z;
         float t;
 
@@ -220,7 +218,6 @@ public class CameraControl : MonoBehaviour
             if (!IsTouchUp(0)) return false;
         }
         else return false;
-        Debug.Log("Drop");
         float x = DraggingObject.transform.position.x;
         float y = DraggingObject.transform.position.y;
         float z = DraggingObject.transform.position.z;
@@ -375,7 +372,6 @@ public class CameraControl : MonoBehaviour
                 Ray ray = Cam.ScreenPointToRay(ZoomCenter);
                 if (!Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, 1 << 10)) return true;
                 ZoomCenter = ray.GetPoint(hit.distance);
-                Debug.Log($"Zoom on {ZoomCenter}");
             }
 
             float distance = Vector3.Distance(GetTouch(0), GetTouch(1));
