@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     //General Objs
+
+    public bool DisableCameraControl;
     private Camera Cam;
     private GameObject Map;
     private GameObject MapPlane;
@@ -71,6 +73,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DisableCameraControl) return;
         if (IsTouching() && IsTouchDown(0)) LastTouch0Position = GetTouch(0);
         if (TouchCount() == 2 && IsTouchDown(1)) LastTouch1Position = GetTouch(1);
         if (IsTouching())

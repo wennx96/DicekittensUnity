@@ -55,7 +55,7 @@ public class Pawn : MonoBehaviour
         PositionIndicator = transform.Find("PositionIndicator").gameObject;
 
         LabelContainer = new GameObject("PawnLabel");
-        LabelContainer.transform.SetParent(GameObject.Find("PawnCanvas").transform);
+        LabelContainer.transform.SetParent(GameObject.Find("PawnLabelCanvas").transform);
         LabelAnchor = Cardboard.transform.Find("LabelAnchor").gameObject;
         LabelMesh = LabelContainer.AddComponent<TextMeshProUGUI>();
 

@@ -50,8 +50,8 @@ MonoBehaviour:
   SpeedBasedAnimations: 0
   UseBackButton: 1
   UseMasterAudio: 0
-  UseOrientationDetector: 0
+  UseOrientationDetector: 1
   UsePlaymaker: 0
-  UseTextMeshPro: 0
-  AssetDatabaseSaveAssetsNeeded: 1
+  UseTextMeshPro: 1
+  AssetDatabaseSaveAssetsNeeded: 0
   AssetDatabaseRefreshNeeded: 0
