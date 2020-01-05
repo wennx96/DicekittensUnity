@@ -123,16 +123,12 @@
      <Compile Include="Assets\Plugins\Easy Save 3\Editor\SettingsWindow.cs" />
      <Compile Include="Assets\Plugins\Easy Save 3\Editor\ToolsWindow.cs" />
      <Compile Include="Assets\Plugins\Easy Save 3\Editor\TypesWindow.cs" />
-     <Compile Include="Assets\Plugins\GitHub\Editor\ExtensionLoader.cs" />
-     <Compile Include="Assets\Plugins\GitHub\Editor\UnityAPIWrapper.cs" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3ClassTypeTemplate.txt" />
-     <None Include="Assets\Plugins\GitHub\Editor\credits.txt" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3ScriptableObjectTypeTemplate.txt" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3ComponentTypeTemplate.txt" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3Type_MaterialTemplate.txt" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3ValueTypeTemplate.txt" />
      <None Include="Assets\Plugins\Easy Save 3\Editor\ES3TypeTemplate.txt" />
-     <None Include="Assets\Plugins\GitHub\Editor\eula.txt" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
@@ -399,21 +395,6 @@
  </Reference>
  <Reference Include="DDebug">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Doozy/Engine/Debug/DDebug.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Api.45">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Logging">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.Unity.45">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll</HintPath>
- </Reference>
- <Reference Include="GitHub.UnityShim">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll</HintPath>
- </Reference>
- <Reference Include="sfw.net">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

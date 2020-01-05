@@ -17,6 +17,8 @@ MonoBehaviour:
   - Custom
   - Example
   - General
+  - Dicekittens
   Categories:
   - {fileID: 11400000, guid: 40f9e81ff80114a47a3721228ba749ed, type: 2}
   - {fileID: 11400000, guid: 6d71374d59bda2b40869e9f7a8617c44, type: 2}
+  - {fileID: 11400000, guid: 2c31b585a8b2f7a4082765463fbdcc18, type: 2}
