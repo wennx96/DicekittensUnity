@@ -86,10 +86,9 @@ public class CameraControl : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
 
 
-        GameObject.Find("View - Map Import").GetComponent<GraphicRaycaster>().Raycast(eventDataCurrentPosition, results);
+        GameObject.Find("View - Map Import")?.GetComponent<GraphicRaycaster>().Raycast(eventDataCurrentPosition, results);
 
-        Debug.Log("=======");
-        results.ForEach(result => Debug.Log(result.ToString()));
+        if (results.Count > 0) return;
 
         if (IsTouching() && IsTouchDown(0)) LastTouch0Position = GetTouch(0);
         if (TouchCount() == 2 && IsTouchDown(1)) LastTouch1Position = GetTouch(1);
