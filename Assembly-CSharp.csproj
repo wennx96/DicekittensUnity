@@ -893,11 +893,14 @@
      <None Include="Assets\Fingers\Demo\ExampleProjects\Resources\FingersExampleTransitionShader.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\ListView\JSON\readme.txt" />
+     <None Include="Assets\ListView\Masking\DepthMask\CustomFont.shader" />
      <None Include="Assets\EasyMobile\Third-Party Notices.txt" />
      <None Include="Assets\Doozy\Examples\Fonts\Montserrat\OFL.txt" />
      <None Include="Assets\Fingers\ChangeLog.txt" />
      <None Include="Assets\Doozy\Examples\Fonts\Baloo_Bhaina\OFL.txt" />
      <None Include="Assets\EasyMobile\link.xml" />
+     <None Include="Assets\ListView\Masking\DepthMask\DepthMask.shader" />
      <None Include="Assets\Doozy\Examples\Fonts\Julius_Sans_One\OFL.txt" />
      <None Include="Assets\Easy Save 2\changelog.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -907,6 +910,7 @@
      <None Include="Assets\Doozy\Examples\Shaders\DRimLightSelective.shader" />
      <None Include="Assets\Doozy\Examples\Fonts\Monoton\OFL.txt" />
      <None Include="Assets\Doozy\Examples\Shaders\DRimLightSolid.shader" />
+     <None Include="Assets\ListView\Masking\AlphaMask\AlphaMask.shader" />
      <None Include="Assets\Doozy\Examples\Fonts\Anton\OFL.txt" />
      <None Include="Assets\Easy Save 2\readme.txt" />
      <None Include="Assets\Doozy\Examples\Fonts\Emilys_Candy\OFL.txt" />
@@ -929,6 +933,7 @@
      <None Include="Assets\Doozy\Examples\Fonts\Permanent_Marker\LICENSE.txt" />
      <None Include="Assets\Doozy\Examples\Fonts\Pacifico\OFL.txt" />
      <None Include="Assets\The_Texture_Lab\TL_Prototype_Textures_Pack\Documentation.txt" />
+     <None Include="Assets\ListView\README.txt" />
      <None Include="Assets\Doozy\Examples\Shaders\DLitSurface.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\EasyMobile\Demo\Materials\VerticalGradient.shader" />
