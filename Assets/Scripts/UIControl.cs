@@ -61,6 +61,22 @@ public class UIControl : MonoBehaviour
         return (uiName, results);
     }
 
+    public void ShowUI(GameObject ui)
+    {
+        foreach (GameObject uiCanvas in UICanvases)
+        {
+            uiCanvas.SetActive(uiCanvas == ui);
+        }
+    }
+
+    public void BackToGame()
+    {
+        foreach (GameObject uiCanvas in UICanvases)
+        {
+            uiCanvas.SetActive(uiCanvas.name.Contains("Toolbar"));
+        }
+    }
+
     public void PickMapImage()
     {
         Media.Gallery.Pick(ImportMap);

@@ -80,7 +80,11 @@ public class CameraControl : MonoBehaviour
         if (DisableCameraControl) return;
         var (uiCanvas, raycastResult) = UIControl.GetRayHitOnUI();
 
-        if (uiCanvas.Contains("View") && !uiCanvas.Contains("Toolbar")) return;
+        if (uiCanvas.Contains("View") && !(uiCanvas.Contains("Toolbar") && raycastResult.Count == 1))
+        {
+            return;
+        }
+
 
         if (IsTouching() && IsTouchDown(0)) LastTouch0Position = GetTouch(0);
         if (TouchCount() == 2 && IsTouchDown(1)) LastTouch1Position = GetTouch(1);

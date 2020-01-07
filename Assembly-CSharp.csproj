@@ -831,6 +831,7 @@
      <Compile Include="Assets\ListView\Scripts\ListViewController.cs" />
      <Compile Include="Assets\ListView\Scripts\ListViewInputHandler.cs" />
      <Compile Include="Assets\ListView\Scripts\ListViewItem.cs" />
+     <Compile Include="Assets\MapSample.cs" />
      <Compile Include="Assets\Prototype Materials\ShowcaseMovement.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBaseProperties.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBoxMesh.cs" />
@@ -1179,9 +1180,6 @@
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
- </Reference>
- <Reference Include="System.Data">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

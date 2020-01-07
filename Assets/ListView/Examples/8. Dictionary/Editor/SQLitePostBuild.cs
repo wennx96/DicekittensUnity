@@ -18,7 +18,7 @@ public static class SQLitePostBuild
                 break;
             case BuildTarget.StandaloneOSXIntel:
             case BuildTarget.StandaloneOSXIntel64:
-            case BuildTarget.StandaloneOSXUniversal:
+            case BuildTarget.StandaloneOSX:
                 pathToBuildProject = Path.Combine(Path.Combine(Path.GetDirectoryName(pathToBuildProject), Path.GetFileNameWithoutExtension(pathToBuildProject) + ".app"), "Contents");
                 Debug.Log(Path.Combine(Application.dataPath, ListView.DictionaryList.editorDatabasePath) + ", " + Path.Combine(pathToBuildProject, ListView.DictionaryList.databasePath));
                 File.Copy(Path.Combine(Application.dataPath, ListView.DictionaryList.editorDatabasePath), Path.Combine(pathToBuildProject, ListView.DictionaryList.databasePath));
