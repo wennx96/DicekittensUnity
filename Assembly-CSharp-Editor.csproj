@@ -370,6 +370,8 @@
      <Compile Include="Assets\QcPrimitives\Editor\QcSphereMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcStairMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcTorusMeshEditor.cs" />
+     <Compile Include="Assets\Simple-Database\Testing\Editor\JsonConvertersTest.cs" />
+     <Compile Include="Assets\Simple-Database\Testing\Editor\SaveFileTest.cs" />
      <None Include="Assets\EasyMobile\Editor\Templates\Template_Constants.txt" />
      <None Include="Assets\Doozy\Editor\Nody\Shaders\LineDraw.shader" />
      <None Include="Assets\EasyMobile\Editor\EasyMobileDependencies.xml" />
@@ -672,6 +674,12 @@
  </Reference>
  <Reference Include="System.Windows.Forms">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
+ </Reference>
+ <Reference Include="BplusDotNet">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/BplusDotNet/BplusDotNet.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/Json.Net.Unity3D/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 using EasyMobile;
+using SFB;
 
 public class UIControl : MonoBehaviour
 {
@@ -79,11 +80,19 @@ public class UIControl : MonoBehaviour
 
     public void PickMapImage()
     {
-        Media.Gallery.Pick(ImportMap);
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            Media.Gallery.Pick(ImportMapEM);
+        }
+        else
+        {
+            var path = StandaloneFileBrowser.OpenFilePanel("Open File", "", "", false);
+        }
     }
 
-    public void ImportMap(string error, MediaResult[] results)
+    public void ImportMapEM(string error, MediaResult[] results)
     {
+
         foreach (MediaResult result in results)
         {
             // You can use this field to check if the picked item is an image or a video.
@@ -95,6 +104,22 @@ public class UIControl : MonoBehaviour
 
             // You can use this uri to load the item.
             string uri = result.Uri;
+            Media.Gallery.LoadImage(result, LoadMapImageEM);
         }
+    }
+
+    public void ImportMapSFB()
+    {
+
+    }
+
+    public void LoadMapImageEM(string error, Texture2D image)
+    {
+        //FileManagement.SaveJpgTexture()
+    }
+
+    public void LoadMapImageSFB()
+    {
+
     }
 }
