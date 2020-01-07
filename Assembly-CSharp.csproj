@@ -799,6 +799,38 @@
      <Compile Include="Assets\Fingers\Prefab\Script\Gestures\SwipeGestureRecognizer.cs" />
      <Compile Include="Assets\Fingers\Prefab\Script\Gestures\TapGestureRecognizer.cs" />
      <Compile Include="Assets\Fingers\Prefab\Script\Other\FingersUtilityMethodsScript.cs" />
+     <Compile Include="Assets\ListView\Examples\0. Simple\SimpleListView.cs" />
+     <Compile Include="Assets\ListView\Examples\1. Basic\BasicListView.cs" />
+     <Compile Include="Assets\ListView\Examples\10. Card Game\CardGameHand.cs" />
+     <Compile Include="Assets\ListView\Examples\10. Card Game\CardGameInputHandler.cs" />
+     <Compile Include="Assets\ListView\Examples\10. Card Game\CardGameList.cs" />
+     <Compile Include="Assets\ListView\Examples\2. Custom Scrolling\ListViewMouseScroller.cs" />
+     <Compile Include="Assets\ListView\Examples\3. Custom Item\CubeItem.cs" />
+     <Compile Include="Assets\ListView\Examples\3. Custom Item\CubeList.cs" />
+     <Compile Include="Assets\ListView\Examples\4. JSON Data\JSONItem.cs" />
+     <Compile Include="Assets\ListView\Examples\4. JSON Data\JSONList.cs" />
+     <Compile Include="Assets\ListView\Examples\5. Nested Data\ListViewExpander.cs" />
+     <Compile Include="Assets\ListView\Examples\5. Nested Data\NestedJSONItem.cs" />
+     <Compile Include="Assets\ListView\Examples\5. Nested Data\NestedJSONList.cs" />
+     <Compile Include="Assets\ListView\Examples\6. Web Data\WebList.cs" />
+     <Compile Include="Assets\ListView\Examples\6. Web Data\WebListInputHandler.cs" />
+     <Compile Include="Assets\ListView\Examples\7. Advanced List\AdvancedList.cs" />
+     <Compile Include="Assets\ListView\Examples\7. Advanced List\AdvancedListInputHandler.cs" />
+     <Compile Include="Assets\ListView\Examples\7. Advanced List\AdvancedListItem.cs" />
+     <Compile Include="Assets\ListView\Examples\7. Advanced List\AdvancedListItemChild.cs" />
+     <Compile Include="Assets\ListView\Examples\7. Advanced List\MouseWiggle.cs" />
+     <Compile Include="Assets\ListView\Examples\8. Dictionary\DictionaryInputHandler.cs" />
+     <Compile Include="Assets\ListView\Examples\8. Dictionary\DictionaryList.cs" />
+     <Compile Include="Assets\ListView\Examples\8. Dictionary\DictionaryListItem.cs" />
+     <Compile Include="Assets\ListView\Examples\9. Cards\Card.cs" />
+     <Compile Include="Assets\ListView\Examples\9. Cards\CardList.cs" />
+     <Compile Include="Assets\ListView\Examples\9. Cards\CardListInputHandler.cs" />
+     <Compile Include="Assets\ListView\JSON\JSONObject.cs" />
+     <Compile Include="Assets\ListView\JSON\JSONTemplates.cs" />
+     <Compile Include="Assets\ListView\JSON\VectorTemplates.cs" />
+     <Compile Include="Assets\ListView\Scripts\ListViewController.cs" />
+     <Compile Include="Assets\ListView\Scripts\ListViewInputHandler.cs" />
+     <Compile Include="Assets\ListView\Scripts\ListViewItem.cs" />
      <Compile Include="Assets\Prototype Materials\ShowcaseMovement.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBaseProperties.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcBoxMesh.cs" />
@@ -1139,6 +1171,12 @@
  </Reference>
  <Reference Include="DDebug">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Doozy/Engine/Debug/DDebug.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

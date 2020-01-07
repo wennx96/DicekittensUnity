@@ -356,6 +356,8 @@
      <Compile Include="Assets\EasyMobile\Editor\Modules\ModuleManagers\ModuleManager_Sharing.cs" />
      <Compile Include="Assets\EasyMobile\Editor\Modules\ModuleManagers\ModuleManager_Utilities.cs" />
      <Compile Include="Assets\Fingers\Prefab\Editor\MinMaxSlider.cs" />
+     <Compile Include="Assets\ListView\Examples\8. Dictionary\Editor\SQLitePostBuild.cs" />
+     <Compile Include="Assets\ListView\JSON\Editor\JSONChecker.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcBoxMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcCircleMeshEditor.cs" />
      <Compile Include="Assets\QcPrimitives\Editor\QcColumnMeshEditor.cs" />
@@ -650,17 +652,23 @@
  <Reference Include="DDebug">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Doozy/Engine/Debug/DDebug.dll</HintPath>
  </Reference>
- <Reference Include="Google.JarResolver_v1.2.131.0">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.131.0.dll</HintPath>
- </Reference>
  <Reference Include="Google.IOSResolver_v1.2.131.0">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.131.0.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.JarResolver_v1.2.131.0">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.131.0.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandlerImpl_v1.2.131.0">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.131.0.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
