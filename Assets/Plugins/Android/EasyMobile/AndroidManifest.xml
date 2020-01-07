@@ -9,7 +9,19 @@ DO NOT MODIFY!
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sglib.easymobile.android" >
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="replace" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application>
+
+        <!-- Activity that gets started when a user try to take picture or pick from gallery. -->
+        <activity android:name="com.sglib.easymobile.androidnative.media.CameraActivity" />
+        <activity android:name="com.sglib.easymobile.androidnative.media.GalleryActivity" />
     </application>
 
 </manifest>

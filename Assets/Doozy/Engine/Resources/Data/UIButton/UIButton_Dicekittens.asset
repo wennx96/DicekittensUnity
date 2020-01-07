@@ -15,5 +15,4 @@ MonoBehaviour:
   CategoryName: Dicekittens
   DatabaseType: 0
   Names:
-  - 5x Grid
-  - 10x Grid
+  - ImportMap

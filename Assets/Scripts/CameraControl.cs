@@ -15,6 +15,7 @@ public class CameraControl : MonoBehaviour
     private GameObject MapPlane;
     private Vector3 CurrentRotation;
     private Vector3 LastMousePosition;
+    private UIControl UIControl;
 
     private Vector3 LastTouch0Position;
     private Vector3 LastTouch1Position;
@@ -68,6 +69,7 @@ public class CameraControl : MonoBehaviour
         Cam = Camera.main;
         Map = GameObject.Find("Map");
         MapPlane = Map.transform.Find("MapPlane").gameObject;
+        UIControl = GameObject.Find("MasterCanvas").GetComponent<UIControl>();
         CurrentRotation = transform.eulerAngles;
         LastMousePosition = Input.mousePosition;
     }
@@ -76,19 +78,9 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         if (DisableCameraControl) return;
-        //Debug.Log("Ray " + (Physics.Raycast(Cam.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << 5) ? "" : "not ") + "hit UI");
-        if (Physics.Raycast(Cam.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << 5)) Debug.Log("Hit UI");
-        //实例化点击事件
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        //将点击位置的屏幕坐标赋值给点击事件
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        var (uiCanvas, raycastResult) = UIControl.GetRayHitOnUI();
 
-        List<RaycastResult> results = new List<RaycastResult>();
-
-
-        GameObject.Find("View - Map Import")?.GetComponent<GraphicRaycaster>().Raycast(eventDataCurrentPosition, results);
-
-        if (results.Count > 0) return;
+        if (uiCanvas.Contains("View") && !uiCanvas.Contains("Toolbar")) return;
 
         if (IsTouching() && IsTouchDown(0)) LastTouch0Position = GetTouch(0);
         if (TouchCount() == 2 && IsTouchDown(1)) LastTouch1Position = GetTouch(1);
