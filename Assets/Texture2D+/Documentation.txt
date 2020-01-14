@@ -1,0 +1,256 @@
+Texture2D+
+----------
+
+The full documentation is available online at http://orbcreation.com/orbcreation/docu.orb. It is formatted in a handy way and contains screenshots.
+
+This plain text version is for people that don't like websites or are just very stubborn.
+
+
+Documentation:
+--------------
+
+
+Texture2D+
+----------
+The Texture2D class in Unity lacks convenient functions to manipulate the image. Of course you can use GetPixels and SetPixels, but it would be a lot easier if simply had functions to properly Scale, Crop and Rotate as well as change Hue, Saturation, Brightness, Luminance, Contrast and Colorize.
+
+You can test these extra Texture2D methods if you run the Demo scene that is included.
+
+You can obtain the Texture2D+ package in the Unity Asset Store
+
+Make sure you include the line
+	using Texture2DExtensions;
+in your scripts
+
+All new Texture2D methods will not return a new Texture2D, but instead affect the original. 
+If you want to preserve your original texture, you should clone it first. Like this:
+	myTexture = (Texture2D)Texture2D.Instantiate(baseTexture); 
+
+
+Import Settings
+---------------
+Make sure that the Texture2D you want to change, has the Read/write enabled flag set in the Import Settings and the Texture format should be set to . If it hasn't you will get one of these errors:
+
+Instantiating a non-readable 'DSC03519' texture is not allowed!
+Please mark the texture readable in the inspector or don't instantiate it
+
+UnityException: Texture 'DSC03519' is not readable, the texture memory 
+can not be accessed from scripts. You can make the texture readable in 
+the Texture Import Settings.
+
+
+The format in the Import Settings is best set to RGBA32. Using a compressed format will give one of these errors:
+
+Can't resize to a compressed texture format
+
+Unsupported texture format - needs to be ARGB32, RGBA32, RGB24 or Alpha8
+
+
+Using Texture2D+
+----------------
+Make sure you include the line
+	using Texture2DExtensions;
+in your script.
+
+Using the Texture2D+ class extensions can best be illustrated with an example:
+
+	using UnityEngine;
+	using System.Collections;
+
+	using Texture2DExtensions;   // important!!!
+
+	public class MyClass : MonoBehaviour {
+		public Texture2D myTexture;  // a texture assigned in the Editor
+
+		void Start () {
+			myTexture.Scale(Screen.width, Screen.height);
+			myTexture.Saturation(0.5f);
+		}
+	}
+
+In this example the Texture is scaled to the same size as the Screen and could for instance be used as a background image.
+Next the texture is desaturated to 50% to make is less destracting.
+
+The new methods do not return a new Texture2D, but instead affect the Texture2D itself. 
+If you want to preserve your original texture, you should clone it first. Like this:
+	myTexture = (Texture2D)Texture2D.Instantiate(baseTexture); 
+
+There are more examples to be found in DemoCtrl.cs 
+
+
+Crop
+----
+void Crop(Rect cropRect)
+
+Will crop the image to the size and offset indicated by cropRect.
+
+Left edge of the changed image is at pixel cropRect.x
+Bottom edge of the changed image is at pixel cropRect.y
+Right edge of the changed image is at pixel cropRect.x + cropRect.width
+Top edge of the changed image is at pixel cropRect.y + cropRect.height
+
+Coordinates go from left bottom (0,0) to top right (texture.width, texture.height)
+
+cropRect.x and cropRect.y will be clamped between 0 and texture.width (of texture.height)
+cropRect.width will be clamped between 0 and texture.width - cropRect.x
+cropRect.height will be clamped between 0 and texture.height - cropRect.y
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Crop to left-top 60%")) {
+	    myTexture.Crop(
+	        new Rect(0f,  // start at left
+	            myTexture.height * 0.4f,   // start at 40% from the bottom
+	            myTexture.width * 0.6f, // new width 60%
+	            myTexture.height * 0.6f  // new height 60%
+	        )
+	    );
+	}
+
+
+Scale
+-----
+void Scale(int width, int height)
+
+(Don't confuse this with Unity's default Texture2D.Resize method, because that only changes the internal pixel size and format, but does not actually resize the contents).
+
+Will scale the image (bilinear) to the new width and height (in pixels). If you want to maintain the image aspect ratio, you will have to take care of that yourself but providing the correct width and height values.
+
+Needless to say that when magnifying a Texture2D, the image quality will diminish.
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Scale to 60%")) {
+	    myTexture.Scale(
+	        myTexture.width * 0.6f, // new width 60%
+	        myTexture.height * 0.6f  // new height 60%
+	    );
+	}
+
+
+Rotate
+------
+void Rotate(float degrees)
+
+Rotates the Texture by degrees counter clockwise (use negative value for clockwise rotation).
+
+Although you can use any float value for degrees, using a multitude of 90 will cause the rotation to take place a little faster, because it will use a simpler rotating method.
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Rotate 45 degrees clockwise")) {
+	    myTexture.Rotate(-45f);  // negative value for clockwise rotation
+	}
+
+Note that the size of the new image will change due to the rotation.
+
+If you use a Texture2D with a format that supports alpha, the unused pixels will be transparent.
+
+If you use an image format that doesn't support alpha (see import settings of your texture), the unused space of the new texture will be filled with black pixels.
+
+
+Hue
+---
+void Hue(float deltaHue)
+
+Will convert all pixels from RGB to their HSB values, change the H (Hue) and convert them back to RGB.
+
+deltaHue can be any value between -1.0 and +1.0. When deltaHue = 0.0, nothing is changed.
+When deltaHue = -1.0 or +1.0 nothing will change either because you shift all colors along a full color circle.
+A delta hue - -0.5 will have the same effect as a deltaHue of +0.5, since the colors are shifted over a half color circle in opposite directions and will end at the same color.
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Freaky colors")) {
+	    myTexture.Hue(0.5f);  // shift hue by 0.5 (= half color circle)
+	}
+
+
+Saturation
+----------
+void Saturation(float deltaSaturation)
+
+Will convert all pixels from RGB to their HSB values, change the S (Saturation) and convert them back to RGB.
+
+deltaSaturation can be any value between -1.0 and +1.0. When deltaSaturation = 0.0, nothing is changed. A deltaSaturation of 0.0 will result in a monochrome image (B/W picture)
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Reduce color")) {
+	    myTexture.Saturation(-0.8f);  // remove most of the color
+	}
+
+
+Brightness
+----------
+void Brightness(float deltaBrightness)
+
+Will convert all pixels from RGB to their HSB values, change the B (Brightness) and convert them back to RGB.
+
+deltaBrightness can be any float value. When deltaBrightness = 0.0 nothing is changed.
+
+Note that increasing the brightness will not result in an all white image. Since color values are multiplied, a full red pixel will remain a red pixel. Use Luminance if you want to brighten the image linear. (Play with them in the demo to see the difference)
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Darken")) {
+	    myTexture.Brightness(-0.5f);  // make all colors darker
+	}
+
+
+ChangeHSB
+---------
+void ChangeHSB(float deltaHue, float deltaSaturation, float deltaBrightness)
+
+Same as using the functions Hue(), Saturation() and Brightness(), only faster. Since all 3 operations are done in 1 loop.
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Go nuts")) {
+	    myTexture.ChangeHSB(-0.5f, 0.5f, 0.5f);  // change colors, make them intenser and brighter
+	}
+
+
+Luminance
+---------
+void Luminance(float deltaLuminance)
+
+Will increase/decrease the luminance of all pixels (exposure). deltaLuminance can be any value between -1.0 (make entire image black) and +1.0 (make entire image white). A value of 0.0 will result in no change at all.
+
+In essence it does this:
+	newPixelColor = pixelColor + new Color(deltaLuminance, deltaLuminance, deltaLuminance);
+
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "I'd rather go blind")) {
+	    myTexture.Luminance(0.7f);  // make image overexposed
+	}
+
+
+Contrast
+--------
+void Contrast(float deltaContrast)
+
+Will stretch or reduce the contrast of the image. The parameter deltaContrast can be any float value. A value of 0.0 will not change the image at all.
+A value of 0 will multiply the contrast by 1.0 (changes nothing)
+A value of +1 will multiply the contrast by 2.0.
+A value of +2 will multiply the contrast by 3.0.
+A value of +3 will multiply the contrast by 4.0.
+A value = -1.0 will multiply the contrast by 0.5.
+A value = -2.0 will multiply the contrast by 0.33.
+A value = -3.0 will multiply the contrast by 0.25.
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "What was in that cake?")) {
+	    myTexture.Contrast(-0.5f);  // reduce contrast a little
+	}
+
+
+Colorize
+--------
+void Colorize(Color color, float amount)
+
+Adds a color to the image.
+To change an image into sepia colors, you reduce the saturation first, then add a brown/yellow color to it. The parameter amount is a value between 0 (no color added) and 1.0 (fully added color)
+
+Example:
+	if(GUI.Button(new Rect(0,0,200,25), "Is it that long ago already?")) {
+	    myTexture.Colorize(   // turn image into Sepia
+	        new Color(1f, 0.5f, 0.17f),     // brownish color
+	        0.95f       // almost full effect
+	    );  
+	    myTexture.Brightness(0.1f);  // and make a little bit brighter
+	}
