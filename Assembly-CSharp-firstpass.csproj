@@ -45,87 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\Easy Save 2\Playmaker\ES2PlayMaker.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\AutoSave\ES2AutoSave.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\AutoSave\ES2AutoSaveGlobalManager.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\AutoSave\ES2AutoSaveManager.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Crossplatform\ES2DirectoryUtility.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Crossplatform\ES2Dispose.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Crossplatform\ES2FileUtility.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Crossplatform\ES2TypeUtility.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Auto.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Cache.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Data.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2EditorWindowStyle.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2File.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Reflection.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Spreadsheet.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\ES2Web.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\MoodkieSecurity\AESBits.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\MoodkieSecurity\AESEncryptor.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\MoodkieSecurity\MD5.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\MoodkieSecurity\MD5Encryptor.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\MoodkieSecurity\Obfuscate.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Readers\ES2Header.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Readers\ES2Reader.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Settings\ES2FilenameData.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Settings\ES2GlobalSettings.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Settings\ES2Keys.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Settings\ES2Settings.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Streams\ES2FileStream.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Streams\ES2MemoryStream.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Streams\ES2PlayerPrefsStream.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Streams\ES2ResourcesStream.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Streams\ES2Stream.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_BoneWeight.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Bounds.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Color.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Color32.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_DateTime.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Enum.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_ES2AutoSaveManager.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_GameObject.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Gradient.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_GradientAlphaKey.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_GradientColorKey.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Material.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Matrix4x4.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Mesh.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Quaternion.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Rect.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Sprite.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Texture.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Texture2D.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Vector2.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Vector3.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Basic Types\ES2_Vector4.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_BoxCollider.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_CapsuleCollider.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_MeshCollider.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_PolygonCollider2D.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_SkinnedMeshRenderer.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_SphereCollider.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Components\ES2_Transform.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\ES2Type.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\ES2TypeManager.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_bool.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_byte.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_char.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_decimal.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_double.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_float.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_int.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_long.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_object.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_sbyte.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_short.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_string.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_uint.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_ulong.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Types\Primitives\ES2_ushort.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Scripts\Writers\ES2Writer.cs" />
-     <Compile Include="Assets\Plugins\Easy Save 2\Types\ES2_Sprite.cs" />
      <Compile Include="Assets\Plugins\Easy Save 3\PlayMaker\ES3PlayMaker.cs" />
      <Compile Include="Assets\Plugins\Easy Save 3\Scripts\Auto Save\ES3AutoSave.cs" />
      <Compile Include="Assets\Plugins\Easy Save 3\Scripts\Auto Save\ES3AutoSaveMgr.cs" />
@@ -267,33 +186,6 @@
      <Compile Include="Assets\Plugins\Easy Save 3\Scripts\Writers\ES3XMLWriter.cs" />
      <None Include="Assets\Plugins\Easy Save 3\link.xml" />
      <None Include="Assets\Plugins\Android\EasyMobile\AndroidManifest.xml" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

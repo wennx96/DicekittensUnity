@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,6 +46,14 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ConsolePro\ConsoleProDebug.cs" />
      <Compile Include="Assets\ConsolePro\Remote\ConsoleProRemoteServer.cs" />
@@ -330,18 +340,6 @@
      <Compile Include="Assets\Doozy\Integrations\Playmaker\Actions\Soundy\StopAllSounds.cs" />
      <Compile Include="Assets\Doozy\Integrations\Playmaker\Actions\Soundy\UnmuteAllSounds.cs" />
      <Compile Include="Assets\Doozy\Integrations\Playmaker\Scripts\PlaymakerEventDispatcher.cs" />
-     <Compile Include="Assets\Easy Save 2\ES2Init.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Creating an Automatic Save Structure\ES2UniqueID.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Creating an Automatic Save Structure\UniqueGameLogic.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Creating an Automatic Save Structure\UniqueObjectManager.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Creating an Automatic Save Structure\UniqueSaveManager.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Save and Load Prefabs Instantiated at Runtime\PrefabManager.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Shared Assets\Scripts\MyExampleScript.cs" />
-     <Compile Include="Assets\Easy Save 2\Examples\Upload and Download a Texture\UploadDownloadTexture.cs" />
-     <Compile Include="Assets\Easy Save 2\Types\ES2_AudioClip.cs" />
-     <Compile Include="Assets\Easy Save 2\Types\ES2_GameObject.cs" />
-     <Compile Include="Assets\Easy Save 2\Types\ES2_RawTexture2D.cs" />
-     <Compile Include="Assets\Easy Save 2\Types\ES2_Sprite.cs" />
      <Compile Include="Assets\EasyMobile\Demo\Scripts\AdvertisingDemo\AdsSection.cs" />
      <Compile Include="Assets\EasyMobile\Demo\Scripts\AdvertisingDemo\AdvertisingDemo.cs" />
      <Compile Include="Assets\EasyMobile\Demo\Scripts\AdvertisingDemo\BannerSection.cs" />
@@ -890,13 +888,18 @@
      <Compile Include="Assets\QcPrimitives\Scripts\QcSphereMesh.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcStairMesh.cs" />
      <Compile Include="Assets\QcPrimitives\Scripts\QcTorusMesh.cs" />
+     <Compile Include="Assets\Scripts\Asset.cs" />
+     <Compile Include="Assets\Scripts\AssetLibrary.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\CombatMap.cs" />
      <Compile Include="Assets\Scripts\CrossScenesObject.cs" />
+     <Compile Include="Assets\Scripts\DebugHelper.cs" />
      <Compile Include="Assets\Scripts\Flags\Immovable.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\GameSettings.cs" />
      <Compile Include="Assets\Scripts\GridTemplate.cs" />
+     <Compile Include="Assets\Scripts\Map.cs" />
+     <Compile Include="Assets\Scripts\MapLibrary.cs" />
      <Compile Include="Assets\Scripts\MapSample.cs" />
      <Compile Include="Assets\Scripts\MobileApiInitializer.cs" />
      <Compile Include="Assets\Scripts\Pawn.cs" />
@@ -965,7 +968,6 @@
      <None Include="Assets\EasyMobile\link.xml" />
      <None Include="Assets\ListView\Masking\DepthMask\DepthMask.shader" />
      <None Include="Assets\Doozy\Examples\Fonts\Julius_Sans_One\OFL.txt" />
-     <None Include="Assets\Easy Save 2\changelog.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\Doozy\Examples\Fonts\Unica_One\OFL.txt" />
      <None Include="Assets\Materials\Glass.shader" />
@@ -975,7 +977,6 @@
      <None Include="Assets\Doozy\Examples\Shaders\DRimLightSolid.shader" />
      <None Include="Assets\ListView\Masking\AlphaMask\AlphaMask.shader" />
      <None Include="Assets\Doozy\Examples\Fonts\Anton\OFL.txt" />
-     <None Include="Assets\Easy Save 2\readme.txt" />
      <None Include="Assets\Doozy\Examples\Fonts\Emilys_Candy\OFL.txt" />
      <None Include="Assets\EasyMobile\Plugins\Android\m2repository\com\sglib\easymobile\easy-mobile\maven-metadata.xml" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
@@ -1052,9 +1053,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -1227,9 +1225,6 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
- </Reference>
  <Reference Include="DemiLib">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
  </Reference>
@@ -1245,17 +1240,17 @@
  <Reference Include="Mono.Data.Sqlite">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
- <Reference Include="Ookii.Dialogs">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
- </Reference>
- <Reference Include="System.Windows.Forms">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
- </Reference>
  <Reference Include="BplusDotNet">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/BplusDotNet/BplusDotNet.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/Json.Net.Unity3D/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="Ookii.Dialogs">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Windows.Forms">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1619,13 +1614,13 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6B64BDAA-016D-E89B-714D-9E68348D02A0}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
+    <ProjectReference Include="WanzyeeStudio.Runtime.csproj">
+      <Project>{548309FA-A98C-796C-929D-A2F4571A6FA5}</Project>
+      <Name>WanzyeeStudio.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

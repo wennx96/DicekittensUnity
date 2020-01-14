@@ -7,7 +7,7 @@ public class CombatMap : MonoBehaviour
 {
     private GameObject GridPlane;
 
-    private Vector2 GridSize;
+    private Map map;
 
     // Start is called before the first frame update
     void Start()

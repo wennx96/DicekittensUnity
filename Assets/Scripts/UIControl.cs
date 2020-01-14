@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using EasyMobile;
 using SFB;
 
+
 public class UIControl : MonoBehaviour
 {
     List<GameObject> UICanvases = new List<GameObject>();
@@ -78,48 +79,8 @@ public class UIControl : MonoBehaviour
         }
     }
 
-    public void PickMapImage()
+    public void ImportMap()
     {
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            Media.Gallery.Pick(ImportMapEM);
-        }
-        else
-        {
-            var path = StandaloneFileBrowser.OpenFilePanel("Open File", "", "", false);
-        }
-    }
-
-    public void ImportMapEM(string error, MediaResult[] results)
-    {
-
-        foreach (MediaResult result in results)
-        {
-            // You can use this field to check if the picked item is an image or a video.
-            MediaType type = result.Type;
-            if (type != MediaType.Image)
-            {
-                continue;
-            }
-
-            // You can use this uri to load the item.
-            string uri = result.Uri;
-            Media.Gallery.LoadImage(result, LoadMapImageEM);
-        }
-    }
-
-    public void ImportMapSFB()
-    {
-
-    }
-
-    public void LoadMapImageEM(string error, Texture2D image)
-    {
-        //FileManagement.SaveJpgTexture()
-    }
-
-    public void LoadMapImageSFB()
-    {
-
+        MapLibrary.PickMapImage();
     }
 }

@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,6 +46,14 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
      <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
@@ -420,9 +430,6 @@
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -600,9 +607,6 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
@@ -654,6 +658,9 @@
  <Reference Include="DDebug">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/Doozy/Engine/Debug/DDebug.dll</HintPath>
  </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
  <Reference Include="Google.IOSResolver_v1.2.131.0">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.131.0.dll</HintPath>
  </Reference>
@@ -666,20 +673,17 @@
  <Reference Include="Google.VersionHandlerImpl_v1.2.131.0">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.131.0.dll</HintPath>
  </Reference>
- <Reference Include="Mono.Data.Sqlite">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/ListView/Examples/8. Dictionary/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <Reference Include="BplusDotNet">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/BplusDotNet/BplusDotNet.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/Json.Net.Unity3D/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Ookii.Dialogs">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
  </Reference>
  <Reference Include="System.Windows.Forms">
  <HintPath>F:/Unity Project/DicekittensUnity/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
- </Reference>
- <Reference Include="BplusDotNet">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/BplusDotNet/BplusDotNet.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>F:/Unity Project/DicekittensUnity/Assets/Simple-Database/Core/Third party/Json.Net.Unity3D/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity Project/DicekittensUnity/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -1046,21 +1050,17 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6B64BDAA-016D-E89B-714D-9E68348D02A0}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{95FDA1DD-1249-B9C9-3362-B996D57DE646}</Project>
+      <Project>{9232E9A7-4B9C-0410-C16C-77454D357763}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{2DE7DDC3-2789-9D8F-3673-D754604EFF70}</Project>
-      <Name>Assembly-CSharp-Editor-firstpass</Name>
+    <ProjectReference Include="WanzyeeStudio.Runtime.csproj">
+      <Project>{548309FA-A98C-796C-929D-A2F4571A6FA5}</Project>
+      <Name>WanzyeeStudio.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
